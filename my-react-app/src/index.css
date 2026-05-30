@@ -1,55 +1,32 @@
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+/* --- Dark Mode Styles (Global & Components) --- */
+
+/* เปลี่ยนสีพื้นหลังหลักและสีตัวอักษร */
+body.dark {
+  background-color: #111827;
+  color: #f9fafb;
 }
 
-body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #f4f6f8; /* สีพื้นหลังแอปอ่อนๆ ดูกำลังดี */
-  color: #333;
+/* สีการ์ดในโหมดมืด */
+body.dark .card {
+  background: #1f2937;
+  border-color: #374151;
 }
 
-/* ลบจุดหน้า List */
-ul {
-  list-style: none;
+body.dark .card h4 {
+  color: #f9fafb;
 }
 
-/* ปุ่มทั่วไป */
-button {
-  cursor: pointer;
-  border-radius: 6px;
-  border: 1px solid #ccc;
-  background: #fff;
-  transition: all 0.2s ease;
+body.dark .card p {
+  color: #9ca3af;
 }
 
-button:hover {
-  background: #e9ecef;
+/* สีปุ่มในโหมดมืด */
+body.dark button {
+  background: #374151;
+  color: #f9fafb;
+  border-color: #4b5563;
 }
 
-/* สไตล์สำหรับ Card และ Grid ที่ใช้ในหน้า Dashboard */
-.data-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 20px;
-  margin-top: 20px;
-}
-
-.card {
-  background: white;
-  padding: 20px;
-  border-radius: 12px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-  border: 1px solid #e5e7eb;
-}
-
-.card h4 {
-  margin-bottom: 10px;
-  font-size: 1.1rem;
-  color: #111827;
-}
-
-.card p {
-  color: #6b7280;
+body.dark button:hover {
+  background: #4b5563;
 }

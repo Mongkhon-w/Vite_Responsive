@@ -1,6 +1,6 @@
 import React from 'react';
 import { MainLayout } from '../layouts/MainLayout';
-import { useProducts } from '../hooks/useProducts'; 
+import { useProducts } from '../hooks/useTransactions'; 
 import { exportDataAsJSON } from '../utils/exportUtils';
 
 export const Dashboard = () => {

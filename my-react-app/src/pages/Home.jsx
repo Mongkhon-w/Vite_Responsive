@@ -1,7 +1,7 @@
 import React from 'react';
 import { MainLayout } from '../layouts/MainLayout';
 import { Card } from '../components/Card';
-import { useProducts } from '../hooks/useProducts';
+import { useProducts } from '../hooks/useTransactions';
 
 export const Home = () => {
   // เรียกใช้ Logic จาก Hook
