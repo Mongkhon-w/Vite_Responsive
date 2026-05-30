@@ -1,6 +1,6 @@
 :root {
   --nav-height: 60px;
-  --sidebar-width: 240px;
+  --sidebar-width: 250px;
 }
 
 .layout-container {
@@ -9,54 +9,94 @@
   min-height: 100vh;
 }
 
+/* --- Navbar --- */
+.navbar {
+  display: flex;
+  align-items: center;
+  padding: 0 24px;
+  background-color: #ffffff;
+  border-bottom: 1px solid #e5e7eb;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+  height: var(--nav-height);
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 1001;
+}
+
+.navbar span {
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+.menu-btn {
+  margin-right: 16px;
+  padding: 8px;
+  background: none;
+  border: none;
+  font-size: 20px;
+  display: none; /* ซ่อนปุ่มเมนูบน Desktop */
+}
+
+/* --- Main Layout Wrapper --- */
 .main-wrapper {
   display: flex;
   flex: 1;
   margin-top: var(--nav-height);
 }
 
-/* Base Content Styling (Mobile First) */
+/* --- Sidebar --- */
+.sidebar {
+  width: var(--sidebar-width);
+  background: #ffffff;
+  border-right: 1px solid #e5e7eb;
+  height: calc(100vh - var(--nav-height));
+  position: fixed; /* ล็อก Sidebar ให้อยู่กับที่เวลาเลื่อนหน้าจอ */
+  overflow-y: auto;
+  transition: transform 0.3s ease;
+}
+
+.sidebar ul {
+  padding: 16px 0;
+}
+
+.sidebar li {
+  padding: 12px 24px;
+  cursor: pointer;
+  color: #4b5563;
+  font-weight: 500;
+}
+
+.sidebar li:hover {
+  background-color: #f3f4f6;
+  color: #111827;
+}
+
+/* --- Content Area --- */
 .main-content {
   flex: 1;
-  padding: 16px;
-  transition: all 0.3s ease;
+  padding: 32px;
+  margin-left: var(--sidebar-width); /* เว้นที่ให้ Sidebar */
+  transition: margin-left 0.3s ease;
 }
 
-/* --- Responsive Layout Rules --- */
+/* --- Responsive Rules --- */
+@media (max-width: 768px) {
+  .menu-btn {
+    display: block; /* แสดงปุ่มแฮมเบอร์เกอร์บนมือถือ */
+  }
 
-/* อุปกรณ์ขนาดเล็ก / มือถือ (Mobile) */
-@media (max-width: 767px) {
   .sidebar {
-    position: fixed;
-    left: -240px; /* ซ่อน Sidebar ออกไปนอกจอ */
-    top: var(--nav-height);
-    bottom: 0;
-    width: var(--sidebar-width);
-    background: #fff;
+    transform: translateX(-100%); /* ซ่อน Sidebar ออกไปทางซ้าย */
     z-index: 1000;
-    transition: transform 0.3s ease;
   }
   
-  /* เมื่อสั่งเปิด Sidebar บนมือถือ */
   .sidebar.open {
-    transform: translateX(240px);
+    transform: translateX(0); /* เลื่อน Sidebar ออกมาเมื่อเปิด */
+    box-shadow: 4px 0 10px rgba(0,0,0,0.1);
   }
-}
 
-/* แท็บเล็ต (Tablet) - หน้าจอตั้งแต่ 768px ขึ้นไป */
-@media (min-width: 768px) and (max-width: 1024px) {
   .main-content {
-    padding: 24px;
-  }
-}
-
-/* คอมพิวเตอร์ / หน้าจอใหญ่ (Desktop) - หน้าจอตั้งแต่ 1025px ขึ้นไป */
-@media (min-width: 1026px) {
-  .sidebar {
-    width: var(--sidebar-width);
-    background: #f4f6f8;
-  }
-  .main-content {
-    padding: 32px;
+    margin-left: 0; /* มือถือไม่ต้องเว้นที่เผื่อ Sidebar */
+    padding: 16px;
   }
 }
