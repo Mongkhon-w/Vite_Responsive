@@ -1,10 +1,16 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom'; // นำเข้า NavLink
+import { NavLink, useNavigate } from 'react-router-dom';
 import { useApp } from '../context/AppContext';
 import './Layout.css';
 
 export const MainLayout = ({ children }) => {
-  const { isSidebarOpen, toggleSidebar } = useApp();
+  const { isSidebarOpen, toggleSidebar, logout } = useApp();
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    logout();
+    navigate('/login'); // พอกดปุ่มให้เด้งไปหน้าล็อกอิน
+  };
 
   return (
     <div className="layout-container">
@@ -14,9 +20,11 @@ export const MainLayout = ({ children }) => {
       </nav>
 
       <div className="main-wrapper">
-        <aside className={`sidebar ${isSidebarOpen ? 'open' : ''}`}>
-          <ul>
-            {/* ใช้ NavLink แทน li ธรรมดา */}
+        {/* เปลี่ยน aside เป็น flex แบบ column เพื่อใช้พื้นที่ให้เต็ม */}
+        <aside className={`sidebar ${isSidebarOpen ? 'open' : ''}`} style={{ display: 'flex', flexDirection: 'column' }}>
+          
+          {/* ใส่ flex: 1 เพื่อดันเนื้อหาส่วนที่เหลือ (ปุ่มล่างสุด) ให้ตกลงไป */}
+          <ul style={{ flex: 1 }}>
             <li>
               <NavLink 
                 to="/" 
@@ -43,6 +51,17 @@ export const MainLayout = ({ children }) => {
               </NavLink>
             </li>
           </ul>
+
+          {/* ส่วนของปุ่ม Logout จะถูกดันมาอยู่ล่างสุดอัตโนมัติ */}
+          <div style={{ padding: '16px', borderTop: '1px solid #e5e7eb' }}>
+            <button 
+              onClick={handleLogout} 
+              style={{ width: '100%', padding: '10px', background: '#ef4444', color: 'white', border: 'none', fontWeight: 'bold' }}
+            >
+              Logout ออกจากระบบ
+            </button>
+          </div>
+          
         </aside>
 
         <main className="main-content">

@@ -1,86 +1,74 @@
-# 🚀 Dummy App ด้วย Node.js, Express, Prisma และ MySQL ที่ออกแบบมาเพื่อรองรับ Playwright Template
+# 🚀 Clean React Financial Dashboard (Frontend Template)
+
+## 📖 Overview
+โปรเจกต์นี้คือ Frontend Boilerplate สำหรับแอปพลิเคชันการเงินที่สร้างด้วย React (Vite) โดยใช้หลักการ **Clean Architecture** เน้นการแยกสัดส่วนของ UI, Logic, และ Data ออกจากกัน เพื่อให้โค้ดดูแลรักษาง่าย (Maintainable) และพร้อมสำหรับการนำไปเชื่อมต่อกับ Backend API จริงในอนาคต
 
 ## 🛠️ Required Tools
 
-* Database: MySQL (XAMPP, Laragon, etc.)
-* Runtime/Language: Node.js / JavaScript
-* Framework: Express.js
-* Template Engine: EJS (สำหรับทำ Web UI)
-* ORM: Prisma (เวอร์ชัน 6 เพื่อความเสถียร)
-* Automation Testing: Playwright
-* Editor: VS Code
+* **Runtime/Environment:** Node.js
+* **Build Tool:** Vite
+* **Frontend Framework:** React.js
+* **Routing:** React Router DOM
+* **State Management:** Context API (Built-in)
+* **Icons:** React Icons
+* **Editor:** VS Code
+
 
 ## 🏗️ Development Setup
 ### Initialize Project (First time)
 ```bash
-# 1. สร้างโปรเจค React ด้วย Vite
-npm create vite@latest my-react-app -- --template react
-# 2. เข้าไปในโฟลเดอร์โปรเจคและติดตั้ง Dependencies
-cd my-react-app
+# 1. สร้างโปรเจกต์ React ด้วย Vite (ตั้งชื่อว่า my-react-template)
+npm create vite@latest my-react-template -- --template react
+# 2. เข้าไปในโฟลเดอร์ที่เพิ่งสร้าง
+cd my-react-template
+# 3. ติดตั้ง Dependencies พื้นฐานของ React
 npm install
-# 3. เข้าไปในโฟลเดอร์ src และสร้างโครงสร้างโฟลเดอร์ตามภาพ
+# 4. ติดตั้งแพ็กเกจเสริมที่เราใช้งาน (React Router สำหรับระบบเปลี่ยนหน้า และ React Icons สำหรับไอคอนถังขยะ)
+npm install react-router-dom react-icons
+```
+
+### Create Folder Structure 
+```bash
+# 1. เข้าไปในโฟลเดอร์ src
 cd src
-mkdir components pages hooks services context assets layouts utils
+
+# 2. สร้างโฟลเดอร์ทั้งหมด 8 โฟลเดอร์รวดเดียว
+mkdir assets components context hooks layouts pages services utils
+
+# ลบไฟล์ CSS เก่าที่ไม่ใช้
+rm App.css
+
+# สร้างไฟล์ Component & Context
+touch components/ProtectedRoute.jsx
+touch context/AppContext.jsx
+
+# สร้างไฟล์ Hook & Service
+touch hooks/useTransactions.js
+touch services/apiService.js
+touch utils/exportUtils.js
+
+# สร้างไฟล์ Layout
+touch layouts/MainLayout.jsx
+touch layouts/Layout.css
+
+# สร้างไฟล์ Pages
+touch pages/Dashboard.jsx
+touch pages/Login.jsx
+touch pages/Register.jsx
+touch pages/Settings.jsx
 ```
 
-### Environment Variables (.env)
-```bash
-สร้างไฟล์ .env
-(อย่าลืมตั้งค่า `DATABASE_URL` ในไฟล์ `.env` ให้เรียบร้อย)
-```
-
-### Create Folder Structure (MVC Pattern)
-```bash
-# 1. สร้างโฟลเดอร์
-mkdir controllers routes views tests
-
-# 2. สร้างไฟล์ทั้งหมด
-touch server.js routes/apiRoutes.js routes/webRoutes.js controllers/apiController.js controllers/webController.js views/login.ejs views/dashboard.ejs tests/ui-api-flow.spec.ts
-```
-### Database Migration
-```bash
-npx prisma db push
-```
 
 ## 🏃‍♂️ Running the System
-
-### Terminal 1 (สำหรับรัน Backend Server):
 ```bash
-node server.js
-(เซิร์ฟเวอร์จะทำงานที่ http://localhost:3000)
-```
-### Terminal 2 (สำหรับรัน Automation Test):
-```bash
-# รันเทสแบบเปิดเบราว์เซอร์ให้เห็นการทำงาน
-npx playwright test tests/ui-api-flow.spec.ts --headed
+# ถอยกลับมาที่โฟลเดอร์หลักของโปรเจกต์ (ถ้ายังอยู่ใน src)
+cd ..
+
+# รันเซิร์ฟเวอร์
+npm run dev
 ```
 
-## 📡 API Endpoints Testing (Thunder Client)
-โปรเจกต์ Dummy App นี้ถูกออกแบบมาให้มีทั้ง API (สำหรับ Setup Data) และ Web UI (สำหรับ Test UI) ดังนี้:
 
-### ฝั่ง API (สำหรับให้ Playwright ยิงสร้างข้อมูล)
 
-**1. Create Data (POST http://localhost:3000/api/v1/data)
 
-```json
-Request Body (JSON):
-{
-  "name": "Automation Test Flow",
-  "status": "active_test"
-}
-Response (201 Created): ระบบจะบันทึกลง MySQL และคาย ID กลับมาให้ Playwright นำไปเช็กต่อ
-```
 
-### ฝั่ง Web UI (สำหรับจำลองผู้ใช้งานจริง)
-**1. หน้า Login (GET http://localhost:3000/login)
-```bash
-ระบบจำลองการเข้าสู่ระบบแบบ Hardcode
-Username: test_user
-Password: password123
-```
-
-**2. หน้า Dashboard (GET http://localhost:3000/dashboard)
-```bash
-แสดงรายการข้อมูลทั้งหมดที่อยู่ใน Database ออกมาเป็น List (<li>)
-Playwright จะเข้ามาค้นหาข้อมูลที่เพิ่งสร้างจาก API บนหน้านี้เพื่อยืนยันความถูกต้อง
-```

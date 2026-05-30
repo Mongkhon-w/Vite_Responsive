@@ -146,6 +146,25 @@ body.dark .form-input option {
   color: white;
 }
 
+/* --- Login Page Styles --- */
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #f4f6f8;
+}
+
+.login-card {
+  width: 100%;
+  max-width: 400px;
+  padding: 40px;
+}
+
+body.dark .login-container {
+  background-color: #111827;
+}
+
 /* รักษาสีปุ่มหลักใน Dark Mode ให้เด่นชัด */
 body.dark .btn-submit { background-color: #10b981; border: none; }
 body.dark .btn-submit:hover { background-color: #059669; }
