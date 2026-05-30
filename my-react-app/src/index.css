@@ -1,0 +1,153 @@
+/* src/index.css */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f4f6f8; 
+  color: #333;
+}
+
+ul {
+  list-style: none;
+}
+
+button {
+  cursor: pointer;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  background: #fff;
+  transition: all 0.2s ease;
+}
+
+button:hover {
+  background: #e9ecef;
+}
+
+/* --- Dashboard Grids --- */
+.data-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.card {
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  border: 1px solid #e5e7eb;
+}
+
+.card h4 {
+  margin-bottom: 10px;
+  font-size: 1.1rem;
+  color: #111827;
+}
+
+.card p {
+  color: #6b7280;
+}
+
+/* --- Form & Buttons --- */
+.form-input {
+  padding: 10px 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  font-size: 1rem;
+  flex: 1;
+  min-width: 150px;
+  background: transparent;
+  color: inherit; 
+}
+
+.btn-submit {
+  padding: 10px 16px;
+  background-color: #10b981;
+  color: white;
+  border: none;
+  font-weight: bold;
+}
+
+.btn-submit:hover { background-color: #059669; }
+
+.btn-export {
+  padding: 10px 16px;
+  background: #0284c7;
+  color: white;
+  border: none;
+  font-weight: bold;
+  margin-bottom: 24px;
+}
+
+.btn-export:hover { background: #0369a1; }
+
+.btn-delete {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: transparent;
+  border: none;
+  color: #ef4444;
+  opacity: 0.5;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px;
+  border-radius: 6px;
+}
+
+.btn-delete:hover {
+  opacity: 1;
+  background: #fee2e2;
+  color: #b91c1c;
+}
+
+/* --- Dark Mode (Global & Components) --- */
+body.dark {
+  background-color: #111827;
+  color: #f9fafb;
+}
+
+body.dark .card {
+  background: #1f2937;
+  border-color: #374151;
+}
+
+body.dark .card h4 {
+  color: #f9fafb;
+}
+
+body.dark .card p {
+  color: #9ca3af;
+}
+
+body.dark button {
+  background: #374151;
+  color: #f9fafb;
+  border-color: #4b5563;
+}
+
+body.dark button:hover {
+  background: #4b5563;
+}
+
+body.dark .form-input {
+  border-color: #4b5563;
+}
+
+body.dark .form-input option {
+  background: #1f2937;
+  color: white;
+}
+
+/* รักษาสีปุ่มหลักใน Dark Mode ให้เด่นชัด */
+body.dark .btn-submit { background-color: #10b981; border: none; }
+body.dark .btn-submit:hover { background-color: #059669; }
+body.dark .btn-export { background: #0284c7; border: none; }
+body.dark .btn-export:hover { background: #0369a1; }

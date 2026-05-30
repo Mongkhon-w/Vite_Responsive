@@ -13,20 +13,15 @@
 ## 🏗️ Development Setup
 ### Initialize Project (First time)
 ```bash
-# สร้างไฟล์ package.json
-npm init -y
-# ติดตั้ง Backend Dependencies
-npm install express ejs
-# ติดตั้ง Prisma และ Playwright
-npm install prisma@^6.0.0 @prisma/client@^6.0.0 --save-dev
-npm install @playwright/test --save-dev
-# ติดตั้ง Browser สำหรับ Playwright
-npx playwright install
-# สร้างไฟล์ตั้งค่าเริ่มต้นของ Prisma
-npx prisma init
+# 1. สร้างโปรเจค React ด้วย Vite
+npm create vite@latest my-react-app -- --template react
+# 2. เข้าไปในโฟลเดอร์โปรเจคและติดตั้ง Dependencies
+cd my-react-app
+npm install
+# 3. เข้าไปในโฟลเดอร์ src และสร้างโครงสร้างโฟลเดอร์ตามภาพ
+cd src
+mkdir components pages hooks services context assets layouts utils
 ```
-node server.js
-npx playwright test tests/ui-api-flow.spec.ts --headed
 
 ### Environment Variables (.env)
 ```bash
