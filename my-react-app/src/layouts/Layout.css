@@ -1,0 +1,62 @@
+:root {
+  --nav-height: 60px;
+  --sidebar-width: 240px;
+}
+
+.layout-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.main-wrapper {
+  display: flex;
+  flex: 1;
+  margin-top: var(--nav-height);
+}
+
+/* Base Content Styling (Mobile First) */
+.main-content {
+  flex: 1;
+  padding: 16px;
+  transition: all 0.3s ease;
+}
+
+/* --- Responsive Layout Rules --- */
+
+/* อุปกรณ์ขนาดเล็ก / มือถือ (Mobile) */
+@media (max-width: 767px) {
+  .sidebar {
+    position: fixed;
+    left: -240px; /* ซ่อน Sidebar ออกไปนอกจอ */
+    top: var(--nav-height);
+    bottom: 0;
+    width: var(--sidebar-width);
+    background: #fff;
+    z-index: 1000;
+    transition: transform 0.3s ease;
+  }
+  
+  /* เมื่อสั่งเปิด Sidebar บนมือถือ */
+  .sidebar.open {
+    transform: translateX(240px);
+  }
+}
+
+/* แท็บเล็ต (Tablet) - หน้าจอตั้งแต่ 768px ขึ้นไป */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .main-content {
+    padding: 24px;
+  }
+}
+
+/* คอมพิวเตอร์ / หน้าจอใหญ่ (Desktop) - หน้าจอตั้งแต่ 1025px ขึ้นไป */
+@media (min-width: 1026px) {
+  .sidebar {
+    width: var(--sidebar-width);
+    background: #f4f6f8;
+  }
+  .main-content {
+    padding: 32px;
+  }
+}
